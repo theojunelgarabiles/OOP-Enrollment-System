@@ -1,29 +1,29 @@
 package org.example;
+import java.util.Scanner;
+import org.example.*;
 import org.example.Service.CourseRegistration;
 import org.example.Service.StudentRegistration;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner (System.in);
+        Scanner scanner = new Scanner(System.in);
+        StudentRegistration studentReg = new StudentRegistration();
+        CourseRegistration courseReg = new CourseRegistration();
 
-//        System.out.print("Enter Student ID: ");
-//        String id = jungkook.nextLine();
-//        System.out.print("Enter Student Name: ");
-//        String name = jungkook.nextLine();
-//        System.out.print("Enter Course ID: ");
-//        String cID = jungkook.nextLine();
-//        System.out.print("Enter Course Name: ");
-//        String cName = jungkook.nextLine();
-//        System.out.print("Enter Program: ");
-//        String prog = jungkook.nextLine();
-
-        StudentRegistration sReg = new StudentRegistration();
-        sReg.saveStudent();
-        CourseRegistration cReg = new CourseRegistration();
-        cReg.save();
-
-
+        int choice;
+        do {
+            System.out.println("=== Enrollment System ===");
+            System.out.println("[1] Student Registration");
+            System.out.println("[2] Course Registration");
+            System.out.println("[0] Exit");
+            System.out.print("Enter choice: ");
+            choice = Integer.parseInt(scanner.nextLine());
+            System.out.println();
+            switch (choice) {
+                case 1 -> studentReg.showMenu();
+                case 2 -> courseReg.showMenu();
+                case 0 -> System.out.println("Goodbye!");
+            }
+        } while (choice != 0);
     }
 }

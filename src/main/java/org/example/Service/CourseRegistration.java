@@ -1,49 +1,75 @@
 package org.example.Service;
-import org.example.Course;
-import org.example.Student;
 import java.util.ArrayList;
 import java.util.Scanner;
+import org.example.Course;
+
 
 public class CourseRegistration {
     private ArrayList<Course> courseList = new ArrayList<>();
-    private Scanner scanner = new Scanner (System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    //Create
-    public void save(){
-        System.out.println("Enter Student Name: ");
-        String name = scanner.next();
-        System.out.println("Enter Student Course: ");
-        String course = scanner.next();
-        System.out.println("Enter Student Program: ");
+    public void save() {
+        System.out.print("Enter Course ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Enter Course Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Program: ");
         String program = scanner.nextLine();
-        courseList.add(new Course(name, course, program));
+        courseList.add(new Course(id, name, program));
+        System.out.println("Course saved successfully!\n");
     }
 
-    //Read
-    public void displayAll(){
-        System.out.println(courseList);
-    }
-
-    //Update
-    public void updateCourse(Course course){
-        for(int i = 0; i < courseList.size(); i++){
-            if(courseList.get(i).getCourseID() == (course.getCourseID())){
-
-                System.out.println("Enter new course ID: ");
-                String id = scanner.nextLine();
-                System.out.println("Enter new Course Name: ");
-                String newCourse = scanner.nextLine();
-            }
+    public void displayAll() {
+        if (courseList.isEmpty()) {
+            System.out.println("No courses found.\n");
+            return;
+        }
+        for (Course c : courseList) {
+            System.out.println(c);
+            System.out.println();
         }
     }
-    //Remove
-    public String delete(Course course){
-        for(int i = 0; i < courseList.size(); i++){
-            if(courseList.get(i).getCourseID() == (course.getCourseID())){
-                courseList.remove(i);
-                return "Successfully Deleted";
+
+    public void updateCourse() {
+        System.out.print("Enter Course ID to update: ");
+        String id = scanner.nextLine();
+        for (Course c : courseList) {
+            if (c.getCourseID().equals(id)) {
+                System.out.print("Enter new Course Name: ");
+                c.setCourseName(scanner.nextLine());
+                System.out.print("Enter new Program: ");
+                c.setProgram(scanner.nextLine());
+                System.out.println("Course updated successfully!\n");
+                return;
             }
         }
-        return "Error";
+        System.out.println("Course not found.\n");
+    }
+
+    public void removeCourse() {
+        System.out.print("Enter Course ID to remove: ");
+        String id = scanner.nextLine();
+        courseList.removeIf(c -> c.getCourseID().equals(id));
+        System.out.println("Course removed (if existed).\n");
+    }
+
+    public void showMenu() {
+        int choice;
+        do {
+            System.out.println("[1] Save Course");
+            System.out.println("[2] Display All Courses");
+            System.out.println("[3] Update Course");
+            System.out.println("[4] Remove Course");
+            System.out.println("[0] Back");
+            System.out.print("Enter choice: ");
+            choice = Integer.parseInt(scanner.nextLine());
+            System.out.println();
+            switch (choice) {
+                case 1 -> save();
+                case 2 -> displayAll();
+                case 3 -> updateCourse();
+                case 4 -> removeCourse();
+            }
+        } while (choice != 0);
     }
 }
