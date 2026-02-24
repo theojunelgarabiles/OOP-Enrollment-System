@@ -13,9 +13,9 @@ public class StudentRegistration {
         int id = scanner.nextInt();
         System.out.println("Enter Student Name: ");
         String name = scanner.next();
-        System.out.println("Enter Student Course: ");
-        String course = scanner.next();
-        studentList.add(new Student(id, name, course));
+        System.out.println("Enter Student Program: ");
+        String program = scanner.next();
+        studentList.add(new Student(id, name, program));
     }
 
     //Read
