@@ -5,18 +5,13 @@ public class Student {
     private String studentName;
     private String program;
 
-    public Student(){
-    }
-
     public Student (int studentID, String studentName, String program){
         this.studentID = studentID;
         this.studentName = studentName;
         this.program = program;
     }
 
-    public int getStudentID (){
-        return studentID;
-    }
+    public int getStudentID (){return studentID;}
     public void setStudentID (int studentID){
         this.studentID = studentID;
     }
@@ -35,10 +30,11 @@ public class Student {
         this.program = program;
     }
 
-    public void displayStudent(){
-        System.out.println("\nStudent ID: " + getStudentID());
-        System.out.println("Student Name: " + getStudentName());
-        System.out.println("Program: " + getProgram());
+    @Override
+    public String toString() {
+        System.out.println("\nStudent ID: " + setStudentID());
+        System.out.println("Student Name: " + setStudentName());
+        System.out.println("Program: " + setProgram());
     }
 }
 

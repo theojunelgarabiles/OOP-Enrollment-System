@@ -5,9 +5,6 @@ public class Course {
     private String courseName;
     private String program;
 
-    public Course(){
-    }
-
     public Course (String courseID, String courseName, String program){
         this.courseID = courseID;
         this.courseName = courseName;
@@ -35,9 +32,8 @@ public class Course {
         this.program = program;
     }
 
+    @Override
     public void displayCourse() {
-        System.out.println("\nCourse ID: " + getCourseID());
-        System.out.println("Course Name: " + getCourseName());
-        System.out.println("Program: " + getProgram());
+        return "Course ID: " + courseID + "\nCourse Name: " + courseName + "\nProgram: " + program;
     }
 }
